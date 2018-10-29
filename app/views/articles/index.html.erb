@@ -1,0 +1,30 @@
+
+<h1>Listing articles</h1>
+ 
+
+<table class="table table-striped" style="margin-top:30px;">
+  <thead>
+  <tr>
+    <th style="text-align:center;">Name</th>
+    <th style="text-align:center;">Content</th>
+    <th style="text-align:center;">Date:Time</th>
+    <th style="text-align:center;" colspan="3"><a class="btn btn-primary" href="<%= new_article_path%>">New article</a></th>
+  </tr>
+ </thead>
+ <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.name %></td>
+      <td><%= article.content %></td>
+      <td><%= article.in_date.strftime("%Y/%m/%d-at %I:%M%p") %></td>
+      <td><a class="btn btn-success" href="<%= article_path(article)%>">Show</a>
+        </td>
+      <td>
+        <a class="btn btn-warning" href="<%= edit_article_path(article)%>">Edit</a></td>
+      <td><%= link_to 'Delete', article_path(article), class: "btn btn-danger",
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
